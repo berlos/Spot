@@ -1,0 +1,28 @@
+PODS:
+  - Realm (0.86.3):
+    - Realm/Headers (= 0.86.3)
+  - Realm/Headers (0.86.3)
+  - SpotzSDK (1.0.5.5):
+    - Realm (= 0.86.3)
+  - XCDYouTubeKit (2.0.3)
+
+DEPENDENCIES:
+  - Realm (~> 0.86.3)
+  - SpotzSDK (from `https://github.com/localz/Spotz-iOS-SDK.git`)
+  - XCDYouTubeKit (~> 2.0.3)
+
+EXTERNAL SOURCES:
+  SpotzSDK:
+    :git: https://github.com/localz/Spotz-iOS-SDK.git
+
+CHECKOUT OPTIONS:
+  SpotzSDK:
+    :commit: d0d36380b70ed553e70c7d9efcff228b708e6a99
+    :git: https://github.com/localz/Spotz-iOS-SDK.git
+
+SPEC CHECKSUMS:
+  Realm: 1f53f3b9b097679c94c927a9df8bcb9aac779554
+  SpotzSDK: 8fef1bef055ba877c5693894c6b3a2ef789db9ac
+  XCDYouTubeKit: 840728453f0a22f54e4488ebeb8ee955a30c274c
+
+COCOAPODS: 0.35.0

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14B23" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6ZM-yJ-4qM" customClass="ClothesCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bertie.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="iOE-yi-s7X" userLabel="IV_Image">
+                        <rect key="frame" x="61" y="25" width="198" height="190"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="190" id="06v-76-OAW"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="198" id="8yV-lX-esO"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="iOE-yi-s7X" secondAttribute="centerY" id="9gZ-lZ-3Ax"/>
+                <constraint firstAttribute="centerX" secondItem="iOE-yi-s7X" secondAttribute="centerX" id="dHL-lg-5Iw"/>
+            </constraints>
+            <connections>
+                <outlet property="IV_Image" destination="iOE-yi-s7X" id="50u-Q9-Rt2"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="bertie.jpeg" width="320" height="320"/>
+    </resources>
+</document>
