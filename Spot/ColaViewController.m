@@ -15,12 +15,13 @@
 @property BOOL initialScroll;
 @property BOOL pictureView;
 @property (nonatomic, strong) UILabel *LB_NavTitle;
+@property NSInteger previousPage;
 
 @end
 
 @implementation ColaViewController
 
-@synthesize colaArray, collectionVC, initialScroll, selectedIndexPath, LB_NavTitle, pictureView;
+@synthesize colaArray, collectionVC, initialScroll, selectedIndexPath, LB_NavTitle, pictureView, previousPage;
 
 static NSString * const reuseIdentifier = @"ColaCell";
 
@@ -29,6 +30,7 @@ static NSString * const reuseIdentifier = @"ColaCell";
     
     initialScroll = NO;
     pictureView = NO;
+    previousPage = 0;
     
     [self.navigationController.navigationBar.topItem setTitle:@""];
     [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
@@ -152,17 +154,22 @@ static NSString * const reuseIdentifier = @"ColaCell";
 {
     initialScroll = YES;
     
-    for (UICollectionViewCell *cell in [collectionVC visibleCells])
+    CGFloat pageWidth = scrollView.frame.size.width;
+    float fractionalPage = scrollView.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    if (previousPage != page)
     {
-        NSIndexPath *activeIndex = [collectionVC indexPathForCell:cell];
+        [self cellDataPrepare:[NSIndexPath indexPathForRow:page inSection:0]];
         
-        [self cellDataPrepare:activeIndex];
-        
+        previousPage = page;
     }
+    
 }
 
 -(void)cellDataPrepare:(NSIndexPath *)cellPath
 {
+    selectedIndexPath = cellPath;
+
     ColaItem *colaItem = [[ColaItem alloc]init];
     
     colaItem = [colaArray objectAtIndex:cellPath.row];

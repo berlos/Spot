@@ -104,21 +104,21 @@ static MainViewController *singletonMainViewController;
                  activeVC = nil;
              }
              
-             if ([beacon.serial isEqualToString:@"Fd03iD"])
+             if ([beacon.serial isEqualToString:@"LmgIZD"]) //Fd03iD
              {
                  [serviceManager getMobile];
              }
-             else if ([beacon.serial isEqualToString:@"vO03iD"])
+             else if ([beacon.serial isEqualToString:@"XNOIZD"]) //vO03iD
              {
                  [serviceManager getShoes];
              }
-             else if ([beacon.serial isEqualToString:@"QR03iD"])
+             else if ([beacon.serial isEqualToString:@"FrIIZD"]) //QR03iD
              {
                  
                  [serviceManager getCola];
                  
              }
-             else if ([beacon.serial isEqualToString:@"LU03iD"])
+             else if ([beacon.serial isEqualToString:@"xPAIZD"]) //LU03iD
              {
                  
                  [serviceManager getClothes];

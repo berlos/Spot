@@ -15,12 +15,13 @@
 @property BOOL initialScroll;
 @property BOOL pictureView;
 @property (nonatomic, strong) UILabel *LB_NavTitle;
+@property NSInteger previousPage;
 
 @end
 
 @implementation IphoneViewController
 
-@synthesize mobileArray, collectionVC, initialScroll, selectedIndexPath, LB_NavTitle, pictureView;
+@synthesize mobileArray, collectionVC, initialScroll, selectedIndexPath, LB_NavTitle, pictureView, previousPage;
 
 static NSString * const reuseIdentifier = @"MobileCell";
 
@@ -29,7 +30,8 @@ static NSString * const reuseIdentifier = @"MobileCell";
     
     initialScroll = NO;
     pictureView = NO;
-    
+    previousPage = 0;
+
     [self.navigationController.navigationBar.topItem setTitle:@""];
     [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -152,16 +154,22 @@ static NSString * const reuseIdentifier = @"MobileCell";
 {
     initialScroll = YES;
     
-    for (UICollectionViewCell *cell in [collectionVC visibleCells])
+    CGFloat pageWidth = scrollView.frame.size.width;
+    float fractionalPage = scrollView.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    if (previousPage != page)
     {
-        NSIndexPath *activeIndex = [collectionVC indexPathForCell:cell];
+        [self cellDataPrepare:[NSIndexPath indexPathForRow:page inSection:0]];
         
-        [self cellDataPrepare:activeIndex];
+        previousPage = page;
     }
+    
 }
 
 -(void)cellDataPrepare:(NSIndexPath *)cellPath
 {
+    selectedIndexPath = cellPath;
+
     MobileItem *mobileItem = [[MobileItem alloc]init];
     
     mobileItem = [mobileArray objectAtIndex:cellPath.row];

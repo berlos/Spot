@@ -15,12 +15,13 @@
 @property BOOL initialScroll;
 @property BOOL smallImagesPressed;
 @property (nonatomic, strong) UILabel *LB_NavTitle;
+@property NSInteger previousPage;
 
 @end
 
 @implementation ClothesViewController
 
-@synthesize initialScroll, clothesArray, selectedIndexPath, collectionVC, LB_NavTitle, imageName, smallImagesPressed;
+@synthesize initialScroll, clothesArray, selectedIndexPath, collectionVC, LB_NavTitle, imageName, smallImagesPressed, previousPage;
 
 static NSString * const reuseIdentifier = @"ClothesCell";
 
@@ -30,7 +31,8 @@ static NSString * const reuseIdentifier = @"ClothesCell";
     
     initialScroll = NO;
     smallImagesPressed = NO;
-    
+    previousPage = 0;
+
     [self.navigationController.navigationBar.topItem setTitle:@""];
     [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -164,17 +166,22 @@ static NSString * const reuseIdentifier = @"ClothesCell";
 {
     initialScroll = YES;
     
-    for (UICollectionViewCell *cell in [collectionVC visibleCells])
+    CGFloat pageWidth = scrollView.frame.size.width;
+    float fractionalPage = scrollView.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    if (previousPage != page)
     {
-        NSIndexPath *activeIndex = [collectionVC indexPathForCell:cell];
-        selectedIndexPath = activeIndex;
-        [self cellDataPrepare:activeIndex];
+        [self cellDataPrepare:[NSIndexPath indexPathForRow:page inSection:0]];
         
+        previousPage = page;
     }
+    
 }
 
 -(void)cellDataPrepare:(NSIndexPath *)cellPath
 {
+    selectedIndexPath = cellPath;
+
     ClothesItem *item = [[ClothesItem alloc]init];
     
     item = [clothesArray objectAtIndex:cellPath.row];
